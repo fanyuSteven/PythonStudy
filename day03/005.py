@@ -1,0 +1,5 @@
+print(isinstance(10, int))
+print(isinstance(10.99, float))
+print(isinstance(True, bool))
+print(isinstance(5e15, int))
+print(isinstance("哈哈哈哈哈", str))
