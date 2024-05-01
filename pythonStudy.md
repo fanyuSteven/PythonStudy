@@ -739,7 +739,7 @@ eg2：打印列表
 
 ```python
 member = ['小甲鱼', '小布丁', '黑夜', '迷途', '哈哈']  # 定义一个列表
-for j in member:  #
+for j in member:  
     print(j, len(j))  # len为当前j所代表的列表中项目的字符长度
 ```
 
@@ -774,50 +774,251 @@ for i in range(10):
 
 ## 列表
 
-1. 概念
+### 概念
 
-   列表，相当于数组，但数组里面只能是同种数据类型，但列表中各元素的数据类型可以不同可以相同
+列表，相当于数组，但数组里面只能是同种数据类型，但列表中各元素的数据类型可以不同可以相同
 
-   ```python
-   # 普通列表
-   member = ['小甲鱼', '小布丁', '哈哈', '嘻嘻', '黑夜', '迷途']  # 列表用中括号[ ]括起来
-   numer = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-   # 混合列表，可以存放各种数据类型，字符串，整型，浮点型，列表，对象
-   mix = ['小甲鱼', 1, 3.14, numer, member]
-   # 当不知道想往列表中存放什么数据时，可以先创建一个空列表，里面元素可以之后添加
-   empty = []  # 空列表
-   ```
-   2.往列表中添加元素
+```python
+# 普通列表
+member = ['小甲鱼', '小布丁', '哈哈', '嘻嘻', '黑夜', '迷途']  # 列表用中括号[ ]括起来
+numer = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# 混合列表，可以存放各种数据类型，字符串，整型，浮点型，列表，对象
+mix = ['小甲鱼', 1, 3.14, numer, member]
+# 当不知道想往列表中存放什么数据时，可以先创建一个空列表，里面元素可以之后添加
+empty = []  # 空列表
+```
+### 打印列表
 
-   ```python
-   # 往列表中添加元素
-   # 用（append方法）
-   print(len(empty))  # 最初empty长度为0
-   empty.append('哈哈')  # extend中只能添加一个元素
-   for i in empty:
-       print(i, end=' ')
-   ```
-   
-   ```python
-   # 用extend方法
-   empty.extend(['嘻嘻', '略略'])  # extend方法能多个元素，但参数是一个列表才行
-   for i in empty:
-       print(i, end=' ')
-   ```
-   
-   ```python
-   # 用insert方法
-   # 前两个方法只能在列表末尾添加元素，而insert方法可以在任何位置添加一个或多个元素
-   empty.insert(0, '啊呜')  # insert方法有两个参数，第一个是插入位置，注意位置是从0开始的，第二个是插入元素
-   for i in empty:
-       print(i, end=' ')
-   print('\n')
-   empty.insert(2, ['haha','xixi','luoluo'])  # 第二个参数可以是单个元素，也可以是一个列表
-   for i in empty:
-       print(i, end=' ')
-   print('\n')
-   ```
-   
+方法1
+
+```python
+member = ['小甲鱼', '小布丁', '哈哈', '嘻嘻', '黑夜', '迷途']
+for i in member: #打印一个列表
+    print(i, end=' ')
+```
+
+输出：
+
+```
+小甲鱼 小布丁 哈哈 嘻嘻 黑夜 迷途
+```
+
+方法2
+
+```python
+member = ['小甲鱼', '小布丁', '哈哈', '嘻嘻', '黑夜', '迷途']
+print(member)
+```
+
+输出：
+
+```python
+['小甲鱼', '小布丁', '哈哈', '嘻嘻', '黑夜', '迷途'] # 直接输出是会带类型变量类型的，列表类型就是带[ ]中括号来表示
+```
+
+
+
+### 往列表中添加元素
+
+```python
+# 往列表中添加元素
+# 用（append方法）
+print(len(empty))  # 最初empty长度为0
+empty.append('哈哈')  # extend中只能添加一个元素
+for i in empty: #打印一个列表
+    print(i, end=' ')
+```
+
+```python
+# 用extend方法
+empty.extend(['嘻嘻', '略略'])  # extend方法能多个元素，但参数是一个列表才行
+for i in empty:
+    print(i, end=' ')
+```
+
+```python
+# 用insert方法
+# 前两个方法只能在列表末尾添加元素，而insert方法可以在任何位置添加一个或多个元素
+empty.insert(0, '啊呜')  # insert方法有两个参数，第一个是插入位置，注意位置是从0开始的，第二个是插入元素
+for i in empty:
+    print(i, end=' ')
+print('\n')
+empty.insert(2, ['haha','xixi','luoluo'])  # 第二个参数可以是单个元素，也可以是一个列表
+for i in empty:
+    print(i, end=' ')
+print('\n')
+```
+
+### 交换元素位置
+
+```python
+member = ['小甲鱼', '小布丁', '哈哈', '嘻嘻', '黑夜', '迷途', '啊呜', '略略', '林小溪']
+print(member)
+print(member[0])  # 列表相当于数组从0开始取数据也类似
+print(member[1])
+
+# 交换member[0]和member[1]元素位置
+temp = member[0]
+member[0] = member[1]
+member[1] = temp
+print(member)
+```
+
+### 从列表删除元素
+
+```python
+# 方法1，已知列表中某一元素并删除 remove( )方法
+member.remove('小甲鱼')
+print(member)
+
+# 方法2，删除列表某一位置的元素  使用del语句
+del member[1]  # del是一个语句，不是方法，member.del(1)是错的，方法才要有.()
+print(member)
+# del member则会删除整个列表
+
+# 方法3，列表因为用栈存储故可以用  pop( )方法
+print(member.pop())  # 栈是从栈尾开始弹出元素
+print(member)
+print(member.pop(1))  # 也可以弹出某一位置的元素
+print(member)
+```
+
+### 列表分片（取出列表的子列表）
+
+利用索引值，每次我们可以从列表获取一个元素，但是如果一次性需要获取多个元素，可以利用列表分片，实现这个要求。
+
+```python
+# 列表分片，取出其中一段连续的子列表，用法  列表名[startIndex:endIndex+1]
+member = ['小甲鱼', '小布丁', '哈哈', '嘻嘻', '黑夜', '迷途', '啊呜', '略略', '林小溪']
+print(member)
+print(member[1:3])  # 输出member[1]和member[2]，因为3 - 1 = 2只输出两个元素，这也是为什么上面endIndex+1
+print(member[:3])  # 前面未写则从最开始到3-1
+print(member[1:])  # 后面未写则从1到最后
+print(member[:])  # 前后都未写则从最开始到结尾
+```
+
+### 关于取列表的分片（子列表）拷贝到另一列表中需注意到的东西
+
+```python
+list6 = [3, 5, 2, 1, 56, 36, 7]
+list7 = list6[:]  # 取出list6中的分片拷贝到另一个空间，该空间给一个名字为list7，前面学过python中变量只是给某一空间的命名而已
+list8 = list6  # 这个操作相当于把list8这个名字也匹配上list6所命名的空间，故list6和list8是同一个东西，排序后列表相同
+list6.sort()
+print(list6)
+print(list7)
+print(list8)
+```
+
+结果：
+
+![image-20240501175327218](pythonStudy.assets/image-20240501175327218.png)
+
+图示
+
+<img src="pythonStudy.assets/image-20240501180335732.png" alt="image-20240501180335732" style="zoom:80%;" />
+
+### 列表常用操作符
+
+比较操作符>、<、==、<=、>=、!=，返回bool值
+
+```python
+list1 = [123]
+list2 = [234]
+print(list1 > list2)  # False
+list1 = [123, 456]
+list2 = [234, 123]
+print(list1 > list2)  # False,比较操作先从两个列表的第一个元素开始比较，若不同则返回比较结果，后面的就不在进行比较
+list3 = [123, 234]
+print(list1 > list3)  # True，若第一个元素相同再比较两个序列的第二个元素
+
+member1 = ['abc', 'abc']
+member2 = ['acd', 'abc']
+print(member1 < member2)  # 字符串列表比较大小是从字符串第一个字符的ASCII码大小开始比较
+```
+
+逻辑操作符and、or......，返回bool值
+
+```python
+print((list1 == list2) and (list1 > list3))
+```
+
+拼接操作符 + ，注意不是加法，拼接操作符两侧必须是序列才能拼接，而不能添加元素，添加元素上面学了
+
+```python
+list4 = list1 + list2
+print(list4)  # 打印结果[123, 456, 234, 123]
+list5 = list1 + 'hahaha'  # 这个是不行的，因为列表和元素不能拼接，会报错
+```
+
+重复操作符
+
+```python
+list3 *= 5  # 相当于list3 = list3 * 5
+print(list3)  # list3重复5次
+```
+
+成员关系操作符 in, not in（用于判断某一元素在(in)或不在(not in)某序列中），返回bool值
+
+```python
+print(123 in list1)
+member = ['小甲鱼', '小布丁', '哈哈', '嘻嘻', '黑夜', '迷途', '啊呜', '略略', '林小溪']
+print('小甲鱼' in member)
+print('hahaha' in member)
+print('hahaha' not in member)
+```
+
+### 扩展访问列表中的列表中的元素
+
+```python
+member = ['小甲鱼', ['haha', 'xixi'], '小布丁', '黑夜', '迷途', '林小溪']
+# 访问xixi
+print(member[1][1])
+# 判断haha是否在member元素的列表元素中
+print('haha' in member[1])
+```
+
+### 列表中其他方法
+
+1.count()方法，返回某元素出现次数
+
+```python
+list3 = [123, 234, 123, 234, 123, 234, 123, 234, 123, 234]
+print(list3.count(123))  # 123在list3中出现5次
+```
+
+2.index()方法,index(元素，[startIndex]，[endIndex])方法,返回某元素第一次出现的位置,[]是可选添加参数，若指定则从该区间找，如果不指定就整个列表找
+
+```python
+print(list3.index(234))  # 234第一次出现在1号位置
+print(list3.index(234, 5, 9))  # 234在5-9号位第一次出现位置
+```
+
+3.reverse( )方法，调转列表元素顺序
+
+```python
+list5 = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+print(list5)
+list5.reverse()
+print(list5)
+```
+
+4.sort( )方法，给列表从小到大排序，里面元素必须是整型或浮点型，使用的是归并排序
+
+```python
+list6 = [3, 5, 2, 1, 56, 36, 7, 10, 28]
+print(list6)
+list6.sort()
+print(list6)
+#如果要从大到小排
+list6 = [3, 5, 2, 1, 56, 36, 7, 10, 28]
+list6.sort(reverse=True)
+```
+
+## 元组
+
+戴上了枷锁的列表
+
+
 
 ## 常用BIF
 
