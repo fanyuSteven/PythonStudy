@@ -101,7 +101,7 @@ help( )     //( )里填如相应的BIF名字
 
 如果看不懂就可以直接百度看，也可以查看。
 
-## 变量和字符串
+## 变量
 
 ### 变量
 
@@ -160,7 +160,7 @@ help( )     //( )里填如相应的BIF名字
      ```
   
 
-### 字符串
+## 字符串
 
 1. 我们所认知的字符串就是引号内的一切东西，我们也把字符串叫做文本，文本和数字是截然不同的，咱看例子：
 
@@ -772,7 +772,7 @@ for i in range(10):
 
 ```
 
-## 列表
+## 列表(list)
 
 ### 概念
 
@@ -967,7 +967,7 @@ print('hahaha' in member)
 print('hahaha' not in member)
 ```
 
-### 扩展访问列表中的列表中的元素
+### 扩展，访问列表中的列表中的元素
 
 ```python
 member = ['小甲鱼', ['haha', 'xixi'], '小布丁', '黑夜', '迷途', '林小溪']
@@ -1014,13 +1014,150 @@ list6 = [3, 5, 2, 1, 56, 36, 7, 10, 28]
 list6.sort(reverse=True)
 ```
 
-## 元组
+## 元组(tuple)
 
-戴上了枷锁的列表
+戴上了枷锁的列表，因为元组一旦定义不能改变，比如删除、插入、排序等不能都不能
+
+还有其他三个方面的不同：
+
+1.创键和访问一个元组
+
+```python
+tuple1 = (1, 2, 3, 4, 5, 6, 7, 8)  # 元组用( , , )来定义
+print(tuple1[1])  # 访问某一元素，元组名[Index]
+print(tuple1[1:])  # 获取某一子元组（即序列中也学过的叫切片）
+print(tuple1[:5])
+print(tuple1[3:5])
+print(tuple1[:])
+tuple1[2] = 3  # 元组不能修改，故这里会报错
+```
+
+元组主要是要有 , 逗号才能叫做元组，没有逗号只是一个数字或一个字符串
+
+```python
+temp = (1)  # 只带一个括号，没有 , 逗号分隔的数就是普通的数
+print(type(temp))  # 这里发现temp是整型数据，<class 'int'>
+temp2 = 2, 3, 4, 5  # 这里有多个数据，且用 , 逗号分隔开的才是元组，且注意元组有没有小括号()是无所谓的，主要有逗号
+print(type(temp2))  # <class 'tuple'>
+temp3 = (1,)
+print(type(temp3))  # <class 'tuple'>
+temp4 = 1,
+print(type(temp4))  # <class 'tuple'>
+temp5 = []
+print(type(temp5))  # <class 'list'>
+temp6 = ()  # 空元组就可以没有逗号，但其他要表示元组都要带逗号
+print(type(temp6))  # <class 'tuple'>
+```
+
+```python
+print(8 * (8))  # 单个元素没有逗号，就是普通的数，结果为64
+print(8 * (8,))  # 有逗号就是元组，*为重复操作符，8重复8遍，结果为(8, 8, 8, 8, 8, 8, 8, 8)
+```
+
+2.更新和删除一个元组
+
+```python
+# 更新
+temp = ('小甲鱼', '黑夜', '迷途', '小布丁')
+temp1 = temp[0:2] + ('怡静',) + temp[2:]  # 只能用拼接来插入某一元素
+print(temp1)  # 因为元组不能随意改变，不能用以前插入序列的方法插入元素到元组中，故使用拼接的方法，这里取出元组切片进行拼接是放到另一片存储空间故原来的元组并不改变，序列中你学过的，所以原来的元组并没有改变。
+
+
+#删除
+# 删除 ’迷途‘ 这个元素
+temp2 = temp[0:2] + temp[3:]  # 用拼接来删除某一元素
+print(temp2)
+del temp(1)  # 报错，元组不能直接删除某一元素，只能用拼接来删除某一元素
+del temp
+print(temp)  # 这里会报错，因为del temp相当于删除temp这个元组，而python中元组中所有数据都delete之后，temp所命名的空间也会释放，故无法打印报错
+```
+
+3.元组相关的操作符，这个和序列一样
+
+```python
+# 3.元组相关的操作符
+# 比较操作符>、<、==、<=、>=、!=
+# 逻辑操作符and、or......
+# 拼接操作符 + 
+# 重复操作符 即 n * (1, 2, 3)
+# 成员关系操作符 in, not in
+```
+
+## 字符串补充
+
+1.字符串与元组类似，可以进行取其中切片，插入删除元素 操作等
+
+```python
+str1 = 'I love fishc.com'
+# 字符串与元组相同，一旦定义不可以在里面插入和删除元素
+# 访问字符串切片（子串），与元组相同
+print(str1[5])
+print(str1[:6])
+# 插入字符
+str2 = str1[:6] + '插入的字符串' + str1[6:]  # 记住切片是放在另一个存储空间中，拼接后任然放在另一个存储空间中并命名为str2，注意中间拼接类型是字符串类型，元组、序列拼接中间也要是相同的元组、序列的类型
+print(str2)
+```
+
+2.字符串也可以用元组和序列的操作符，注意列表、元组、字符串的操作符都是可以用的，且使用方法相同
+
+```python
+# 比较操作符>、<、==、<=、>=、!=
+# 逻辑操作符and、or......
+# 拼接操作符 + 
+# 重复操作符 即 n * (1, 2, 3)
+# 成员关系操作符 in, not in
+```
+
+3.字符串方法及注释
+
+|                   方法                    | 用途                                                         |
+| :---------------------------------------: | :----------------------------------------------------------- |
+|               capitalize()                | 把字符串的第一个字符改为大写                                 |
+|                casefold()                 | 把整个字符串的所有字符改为小写                               |
+|               center(width)               | 将字符串居中，并使用空格填充至长度为width的新字符串          |
+|         count(sub[,start[,end]])          | 返回sub在字符串里边出现的次数，start和end参数表示范围，可选故用[ ]括起来。 |
+| encode(encoding='utf-8', errors='strict') | 以encoding指定的编码格式对字符串进行编码。                   |
+|        endswith(sub[,start[,end]])        | 检查字符串是否以sub子字符串结束，如果是返回True，否则返回False。start和end参数表示范围，可选。 |
+|          expandtabs([tabsize=8])          | 把字符串中的tab符号（\t）转换为空格，如不指定参数，默认的空格数是tabsize=8，不是空格有8个，而是\t前面的字符加上空格，一共8个。 |
+|          find(sub[,start[,end]])          | 检测sub是否包含在字符串中，如果有则返回索引值，否则返回-1，start和end参数表示范围，可选。 |
+|         index(sub[,start[,end]])          | 跟find方法一样，不过如果sub不在string中会产生一个异常。      |
+|                 isalnum()                 | 如果字符串至少有一个字符并且所有字符都是字母或数字则返回True，否则返回False。 |
+|                 isalpha()                 | 如果字符串至少有一个字符并且所有字符都是字母则返回True，否则返回False。 |
+|                isdecimal()                | 如果字符串只包含十进制数字则返回True，否则返回False。        |
+|                 isdigit()                 | 如果字符串只包含数字则返回True，否则返回False。              |
+|                 islower()                 | 如果字符串中至少包含一个区分大小写的字符，并且这些字符都是小写，则返回True，否则返回False。 |
+|                isnumeric()                | 如果字符串中只包含数字字符，则返回True，否则返回False。      |
+|                 isspace()                 | 如果字符串中只包含空格，则返回True，否则返回False。          |
+|                 istitle()                 | 如果字符串是标题化（所有的单词都是以大写开始，其余字母均小写），则返回True，否则返回False。 |
+|                 isupper()                 | 如果字符串中至少包含一个区分大小写的字符，并且这些字符都是大写，则返回True，否则返回False。 |
+|                 join(sub)                 | 以字符串作为分隔符，插入到sub中所有的字符之间。  >>> str5 = 'Fishc' >>> str5.join('12345')  '1Fishc2Fishc3Fishc4Fishc5' |
+|               ljust(width)                | 返回一个左对齐的字符串，并使用空格填充至长度为width的新字符串。 |
+|                  lower()                  | 转换字符串中所有大写字符为小写。                             |
+|                 lstrip()                  | 去掉字符串第一个字符左边的所有空格                           |
+|              partition(sub)               | 找到子字符串sub，把字符串分成一个3元组（pre_sub,sub,fol_sub），如果字符串中不包含sub则返回(‘原字符串’, ' ',  ' ') |
+|         replace(old,new[,count])          | 把字符串中的old子字符串替换成new子字符串，如果count指定，则替换不超过count次。>>> str7 = 'i love fishdm and seven'   >>> str7.replace('e','E',2)      'i lovE fishdm and sEven' |
+|         rfind(sub[,start[,end]])          | 类似于find()方法，不过是从右边开始查找。                     |
+|         rindex(sub[,start[,end]])         | 类似于index()方法，不过是从右边开始。                        |
+|               rjust(width)                | 返回一个右对齐的字符串，并使用空格填充至长度为width的新字符串。 |
+|              rpartition(sub)              | 类似于partition()方法，不过是从右边开始查找。                |
+|                 rstrip()                  | 删除字符串最后一个字符串末尾的空格。                         |
+|       split(sep=None, maxsplit=-1)        | 不带参数默认是以空格为分隔符，原字符串空格左右两边各自切片成新的字符串，如果maxsplit参数有设置，则仅分隔maxsplit个子字符串，返回切片后的子字符串拼接的列表。  >>> str7.split ()  ['i', 'love', 'fishdm', 'and', 'seven'] |
+|         splitlines(([keepends]))          | 按照‘\n’分隔，返回一个包含各行作为元素的列表，如果keepends参数指定，则返回前keepends行。 |
+|     startswith(prefix[,start[,end]])      | 检查字符串是否以prefix开头，是则返回True，否则返回False。start和end参数可以指定范围检查，可选。 |
+|              strip([chars])               | 默认删除字符串第一个字符前边和最后一个字符后边所有的空格，chars参数可以定制删除的字符，可选，就不是删空格了而是该字符。 |
+|                swapcase()                 | 翻转字符串中的大小写。                                       |
+|                  title()                  | 返回标题化（所有的单词都是以大写开始，其余字母均小写）的字符串。 |
+|             translate(table)              | 根据table的规则（可以由str.maketrans(‘a’,‘b’)定制）转换字符串中的字符。>>> str8 = 'aaasss sssaaa'  >>> str8.translate(str.maketrans('s','b'))   'aaabbb bbbaaa'，将字符串中所有s转成b，str.maketrans('s','b')用于指明s和b的ASCII码值 |
+|                  upper()                  | 转换字符串中的所有小写字符为大写。                           |
+|               zfill(width)                | 返回长度为width的字符串，原字符串右对齐，前边用0填充。       |
+
+4.字符串格式化
+
+format( )方法
 
 
 
-## 常用BIF
+## 常用BIF——Built-in functions(内置函数)
 
 ### print( )
 
