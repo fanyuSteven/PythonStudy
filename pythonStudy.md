@@ -147,18 +147,17 @@ help( )     //( )里填如相应的BIF名字
 
   3. python区分大小写，故字母可以是大写或小写，但大小写是不同的。也就是说fishc和FishC对于Python来说是完全不同的两个名字
 
-  3. BIF中已经用过的函数名，尽量不用做变量名  eg：print，str
+  4. BIF中已经用过的函数名，尽量不用做变量名  eg：print，str
 
-  4. 等号（=）是赋值的意思，左边是名字，右边是值，不可写反咯。
+  5. 等号（=）是赋值的意思，左边是名字，右边是值，不可写反咯。
 
-  5. 变量的命名理论可以取任何合法的名字，但作为一个优秀的程序员，请将尽量给变量取一个专业一点儿的名字
-  
+  6. 变量的命名理论可以取任何合法的名字，但作为一个优秀的程序员，请将尽量给变量取一个专业一点儿的名字
+
      ```python
      t =‘小甲鱼’       //×
      xxoo =‘小甲鱼’    //×
      teacher =‘小甲鱼’ //√
      ```
-  
 
 ## 字符串
 
@@ -316,7 +315,7 @@ str = '我爱鱼C，\n正如我爱小甲鱼，\n他那呱唧呱唧\n呱唧呱唧
       ```
 
       打印出来的值
-   
+
       ```python
       <class 'int'>
       <class 'float'>
@@ -336,9 +335,9 @@ str = '我爱鱼C，\n正如我爱小甲鱼，\n他那呱唧呱唧\n呱唧呱唧
    print(isinstance(5e15, int))
    print(isinstance("哈哈哈哈哈", str))
    ```
-   
+
    返回
-   
+
    ```python
    True
    True
@@ -346,20 +345,19 @@ str = '我爱鱼C，\n正如我爱小甲鱼，\n他那呱唧呱唧\n呱唧呱唧
    False		//5e15是浮点型
    True
    ```
+
    
-   
-   
+
    ## 数据类型转换
-   
+
    <img src="pythonStudy.assets/image-20240425095717120.png" alt="image-20240425095717120" style="zoom:67%;" />
-   
+
    ![image-20240425105427997](pythonStudy.assets/image-20240425105427997.png)
-   
+
    ```python
    a = '哈哈哈'
    b = int(a)//这里会报错，因为'哈哈哈'这个字符串不是数字类型的字符串
    ```
-   
 
 ## 运算符
 
@@ -393,7 +391,9 @@ print('e = ' + str(e))
 print('f = ' + str(f))
 print('g = ' + str(g))
 ```
+
 输出结果：
+
 ```python
 13
 2
@@ -550,9 +550,9 @@ print("游戏结束，不玩啦^_^")
   if score < 0 or score > 100:
       print('输入错误！')
   ```
-  
+
   方法二：
-  
+
   ```python
   # 方法二：if - else
   score = int(input("请输入您的成绩："))  # 输入成绩
@@ -576,17 +576,17 @@ print("游戏结束，不玩啦^_^")
 方法三：
 
  ```python
- # 方法三：if - elif，elif相当于C语言中的else if，就不用再像方法一那样写else: 再if(条件):,太多了
- if score >= 90:
-     print("A")
- elif (score < 90) and (score >= 80):
-     print("B")
- elif score >= 60 and score < 80:
-     print("C")
- elif score > 0 and score < 60:
-     print("D")
- else:
-     print("输入成绩错误")
+# 方法三：if - elif，elif相当于C语言中的else if，就不用再像方法一那样写else: 再if(条件):,太多了
+if score >= 90:
+    print("A")
+elif (score < 90) and (score >= 80):
+    print("B")
+elif score >= 60 and score < 80:
+    print("C")
+elif score > 0 and score < 60:
+    print("D")
+else:
+    print("输入成绩错误")
  ```
 
 ### Python可以有效避免“悬挂else”
@@ -661,7 +661,7 @@ assert这个关键字我们称之为“断言”，当这个关键字后边的�
 
 ![image-20240427202153042](pythonStudy.assets/image-20240427202153042.png)一般来说我们可以用Ta再程序中置入检查点，当需要确保程序中的某个条件一定为真才能让程序正常工作的话，assert关键字就非常有用了
 
-## 循环
+## 循环(也叫迭代，重复同样的过程代码)
 
 ### While循环
 
@@ -685,33 +685,33 @@ while 条件：
 - 心里想的是一个随机数
 
  ```python
-  import random		//导入random模块
-  
-  secret = random.randint(0, 10)		//每次随机想一个心里数字在0-10之内。
-  temp = input("不妨猜一下小甲鱼心中的数字:")   //输入的通用式子，input()可以直接写，括号里可以放输入前先输出一段话。
-  guess = int(temp) //将输入的数字强制转换为int整数类型
-  i = 0
-  while 1:        //条件为1，故一直循环，知道猜对或者，猜错三次退出。
-      if guess == secret:
-          print("哇塞，你是小甲鱼心里的蛔虫吗？!!!")
-          print("哼，猜中了也没有奖励!")
-          break
-      else:
-          if guess > secret:
-              print("哥，大了大了~~")
-          else:
-              if guess < secret:
-                  print("哥，小了小了~~")
-      i = i + 1
-      if i >= 3:  //超过3次尝试就跳出游戏。
-          break
-      temp = input("哎呀，猜错了，请重新输入吧:")
-      guess = int(temp)
-  
-  if guess != secret and i == 3:    //当第三次输出且未猜对便输出正确答案。
-      print("尝试太多次了，下次再来吧")
-      print("正确答案是：" + str(secret))
-  print("游戏结束，不玩啦^_^")
+ import random		//导入random模块
+ 
+ secret = random.randint(0, 10)		//每次随机想一个心里数字在0-10之内。
+ temp = input("不妨猜一下小甲鱼心中的数字:")   //输入的通用式子，input()可以直接写，括号里可以放输入前先输出一段话。
+ guess = int(temp) //将输入的数字强制转换为int整数类型
+ i = 0
+ while 1:        //条件为1，故一直循环，知道猜对或者，猜错三次退出。
+     if guess == secret:
+         print("哇塞，你是小甲鱼心里的蛔虫吗？!!!")
+         print("哼，猜中了也没有奖励!")
+         break
+     else:
+         if guess > secret:
+             print("哥，大了大了~~")
+         else:
+             if guess < secret:
+                 print("哥，小了小了~~")
+     i = i + 1
+     if i >= 3:  //超过3次尝试就跳出游戏。
+         break
+     temp = input("哎呀，猜错了，请重新输入吧:")
+     guess = int(temp)
+ 
+ if guess != secret and i == 3:    //当第三次输出且未猜对便输出正确答案。
+     print("尝试太多次了，下次再来吧")
+     print("正确答案是：" + str(secret))
+ print("游戏结束，不玩啦^_^")
  ```
 
 ### for循环
@@ -772,9 +772,13 @@ for i in range(10):
 
 ```
 
-## 列表(list)
+## 序列
 
-### 概念
+python中序列包括列表list、元组tuple、字符串string
+
+### 列表(list)
+
+#### 概念
 
 列表，相当于数组，但数组里面只能是同种数据类型，但列表中各元素的数据类型可以不同可以相同
 
@@ -787,7 +791,8 @@ mix = ['小甲鱼', 1, 3.14, numer, member]
 # 当不知道想往列表中存放什么数据时，可以先创建一个空列表，里面元素可以之后添加
 empty = []  # 空列表
 ```
-### 打印列表
+
+#### 打印列表
 
 方法1
 
@@ -816,9 +821,7 @@ print(member)
 ['小甲鱼', '小布丁', '哈哈', '嘻嘻', '黑夜', '迷途'] # 直接输出是会带类型变量类型的，列表类型就是带[ ]中括号来表示
 ```
 
-
-
-### 往列表中添加元素
+#### 往列表中添加元素
 
 ```python
 # 往列表中添加元素
@@ -849,7 +852,7 @@ for i in empty:
 print('\n')
 ```
 
-### 交换元素位置
+#### 交换元素位置
 
 ```python
 member = ['小甲鱼', '小布丁', '哈哈', '嘻嘻', '黑夜', '迷途', '啊呜', '略略', '林小溪']
@@ -864,7 +867,7 @@ member[1] = temp
 print(member)
 ```
 
-### 从列表删除元素
+#### 从列表删除元素
 
 ```python
 # 方法1，已知列表中某一元素并删除 remove( )方法
@@ -883,7 +886,7 @@ print(member.pop(1))  # 也可以弹出某一位置的元素
 print(member)
 ```
 
-### 列表分片（取出列表的子列表）
+#### 列表分片（取出列表的子列表）
 
 利用索引值，每次我们可以从列表获取一个元素，但是如果一次性需要获取多个元素，可以利用列表分片，实现这个要求。
 
@@ -897,7 +900,7 @@ print(member[1:])  # 后面未写则从1到最后
 print(member[:])  # 前后都未写则从最开始到结尾
 ```
 
-### 关于取列表的分片（子列表）拷贝到另一列表中需注意到的东西
+关于取列表的分片（子列表）拷贝到另一列表中需注意到的东西
 
 ```python
 list6 = [3, 5, 2, 1, 56, 36, 7]
@@ -917,7 +920,7 @@ print(list8)
 
 <img src="pythonStudy.assets/image-20240501180335732.png" alt="image-20240501180335732" style="zoom:80%;" />
 
-### 列表常用操作符
+#### 列表常用操作符
 
 比较操作符>、<、==、<=、>=、!=，返回bool值
 
@@ -967,7 +970,7 @@ print('hahaha' in member)
 print('hahaha' not in member)
 ```
 
-### 扩展，访问列表中的列表中的元素
+#### 扩展，访问列表中的列表中的元素
 
 ```python
 member = ['小甲鱼', ['haha', 'xixi'], '小布丁', '黑夜', '迷途', '林小溪']
@@ -977,7 +980,7 @@ print(member[1][1])
 print('haha' in member[1])
 ```
 
-### 列表中其他方法
+#### 列表中其他方法
 
 1.count()方法，返回某元素出现次数
 
@@ -1014,11 +1017,23 @@ list6 = [3, 5, 2, 1, 56, 36, 7, 10, 28]
 list6.sort(reverse=True)
 ```
 
-## 元组(tuple)
+注意不能	直接打印排序，这样会返回None，因为list.sort( )是没有返回值的，所以会返回None
 
-戴上了枷锁的列表，因为元组一旦定义不能改变，比如删除、插入、排序等不能都不能
+```python
+print(list6.sort())
+```
 
-还有其他三个方面的不同：
+如果想这样打印可以用sorted函数，常用BIF——Built-in functions(内置函数)专题中有记具体使用方法
+
+```python
+print(sorted(list6))
+```
+
+### 元组(tuple)
+
+戴上了枷锁的列表，因为元组一旦定义不能改变，比如删除、插入、排序等都不能进行
+
+但可以使用其他方法实现
 
 1.创键和访问一个元组
 
@@ -1083,7 +1098,11 @@ print(temp)  # 这里会报错，因为del temp相当于删除temp这个元组�
 # 成员关系操作符 in, not in
 ```
 
-## 字符串补充
+元组不能改变，故没有sort( )、reverse( )，这种会改变元组的方法
+
+但排序和反转可以使用sorted和reversed方法，会先将元组变成列表放入另一个存储空间，再对该列表进行排序，单数原来的元组不会改变，改变的只是存放的序列空间的数据顺序改变。
+
+### 字符串补充
 
 1.字符串与元组类似，可以进行取其中切片，插入删除元素 操作等
 
@@ -1252,6 +1271,53 @@ print(str2)
   | \0       | 表示一个空字符       |
   | \\       | 反斜杠               |
 
+列表、元组和字符串的共同点
+
+- 都可以通过索引得到每一个元素
+- 默认索引值总是从0开始
+- 可以通过分片的方法得到一个范围内的元素的集合
+- 有很多共同的操作符（重复操作符、拼接操作符、成员关系操作符）
+
+## 函数
+
+### 函数定义和调用
+
+```python
+def MyFirstFunction():  # 函数定义，()括号里面可以定义参数
+    print("这是我创建的第一个函数")
+    print("我表示很激动")
+    print("在此，我要感谢TVB，感谢CCTV，感谢各位")
+
+
+MyFirstFunction()  # 函数调用
+```
+
+### 函数的参数
+
+```python
+def MySecondFunction(name):  # 这里函数的参数不用像C语言那样定义类型，只用定义名字就可以
+    print(name + "我爱你!")  # 因为这里name + ‘我爱你’，如果name是字符串就是+就是连接符，但一定不能是数字类型，因为字符串和数字无法相加，如果是数字类型会报错
+
+
+MySecondFunction('Q.M.F.')
+
+
+def MyThirdFunction(a, b):  # 两个参数
+    result = a + b
+    print(result)
+```
+
+### 函数的返回值
+
+```python
+def add(num1, num2):
+    return num1 + num2  # 返回值用return
+
+
+result = add(3, 4)
+print(result)
+```
+
 ## 常用BIF——Built-in functions(内置函数)
 
 ### print( )
@@ -1302,7 +1368,7 @@ while i < 5:
 
 打印结果
 
-```python
+```
 01234
 ```
 
@@ -1314,50 +1380,50 @@ while i < 5:
 
 ### len( )
 
-方法返回变量中（字符、列表、元组等）所含的字符串中所含字符个数或列表中项目个数。
+方法返回变量中（字符、列表、元组等）所含的字符串中所含字符个数或列表或元组中中元素个数。
 
 ### list( )
 
-在IDLE中展示，pycharm中必须用print才能显示
+无参数是创建一个空列表，有参数用于把该参数对象里的数据转换成列表
 
 1. 创建一个空列表（无参调用list函数）
 
  ```python
- test = list()
- test
- # IDLE中输出结果
- [] # IDLE中直接输出是会显示数据类型的
+test = list()
+test
+# IDLE中输出结果
+[] # IDLE中直接输出是会显示数据类型的
  ```
 
 2. 将字符串转换为列表
 
  ```python
- test = list('cat')
- test
- # IDLE中输出结果
- ['c', 'a', 't'] # IDLE中直接输出是会显示数据类型的，列表数据类型用中括号[ ]代表
+a = 'cat'
+test = list(a) # 方法一
+test = list('cat') # 方法二
+test
+# IDLE中输出结果
+['c', 'a', 't'] # IDLE中直接输出是会显示数据类型的，列表数据类型用中括号[ ]代表
  ```
 
 3. 将元组转换为列表
 
  ```python
- a_tuple = ('I love Python.', 'I also love HTML.')
- test = list(a_tuple)
- test
- # IDLE中输出结果
- ['I love Python.', 'I also love HTML.']
+a_tuple = ('I love Python.', 'I also love HTML.')
+test = list(a_tuple)
+test
+# IDLE中输出结果
+['I love Python.', 'I also love HTML.']
  ```
-
- 
 
 4. 将字典转换为列表
 
  ```python
- a_dict = {'China':'Beijing', 'Russia':'Moscow'}
- test = list(a_dict)
- test
- # IDLE中输出结果
- ['China', 'Russia']
+a_dict = {'China':'Beijing', 'Russia':'Moscow'}
+test = list(a_dict)
+test
+# IDLE中输出结果
+['China', 'Russia']
  ```
 
   注意：将字典转换为列表时，会将字典的值舍去，而仅仅将字典的键转换为列表。如果想将字典的值全部转换为列表，可以考虑使用字典方法dict.values()
@@ -1365,28 +1431,28 @@ while i < 5:
 5. 将集合转换为列表
 
  ```python
- a_set = {1, 4, 'sdf'}
- test = list(a_set)
- test
- # IDLE中输出结果
- [1, 'sdf', 4]
+a_set = {1, 4, 'sdf'}
+test = list(a_set)
+test
+# IDLE中输出结果
+[1, 'sdf', 4]
  ```
 
 6. 将其他可迭代序列转化为列表
-    下面的代码将range类型和map类型的可迭代序列转换为列表：
+   下面的代码将range类型和map类型的可迭代序列转换为列表：
 
   ```python
-  test1 = list(range(10))
-  test1
-  # IDLE中输出结果
-  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+test1 = list(range(10))
+test1
+# IDLE中输出结果
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   ```
 
-  
+### tuple( )
 
- 
+无参数是创建一个空元组，有参数用于把该参数对象里的数据转换成元组
 
-### range()
+### range( )
 
 range这个BIF的作用是生成一个从start参数的值开始到stop参数的值结束的数字序列，常与for循环一起用，
 
@@ -1421,7 +1487,134 @@ for k in b: # 或者不用b，直接for k in range(5):也行
     print(k)
 ```
 
+### max( )
 
+返回参数里的最大值，或者参数是序列(列表、元组和字符串)时返回序列中元素最大值
+
+参数是多个数字或字符，注意max后( )里是参数用逗号分隔，不是元组而是参数别弄混，函数后面( )是放参数的，不要以为和元组定义一样就认为是元组
+
+```python
+a = max(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+print(a)  # 打印结果为：12
+```
+
+参数是序列时
+
+```python
+b = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+c = ['a', 'b', 'c', 'd', 'e', 'v']
+d = '123456789'
+print(max(b))  # 打印结果为：11
+print(max(c))  # 打印结果为：v  因为ASCII码中v的数值最大
+print(max(d))  # 打印结果为：9  因为ASCII码中9的数值最大
+```
+
+但是无论是参数还是序列，里面的数据类型必须相同，否则没法比较，会报错
+
+```python
+e = (1, 2, 3, 4, 'a')
+print(max(e))
+```
+
+<img src="pythonStudy.assets/image-20240504094942281.png" alt="image-20240504094942281" style="zoom:80%;" />
+
+不能既有整型又有字符型数据，但整型和浮点型可以放在一起因为都是数字
+
+### min( )
+
+返回参数里的最小值，或者参数是序列(列表、元组和字符串)时返回序列中元素最小值，用法与max( )用法相同
+
+### sum( )
+
+<img src="pythonStudy.assets/image-20240504095335027.png" alt="image-20240504095335027" style="zoom:80%;" />
+
+求序列元素总和，参数必须有序列(列表、元组和字符串)，且序列中元素必须为整型或浮点型，字符型无法相加
+
+```python
+e = (1, 2, 3, 4, 'a')
+f = [1.1, 2.2, 3.3, 4.4, 5.5, 6.6]
+print(sum(f))  # 打印结果为：23.1
+print(sum(e))  # 会报错因为e中元素既有数字也有字符，无法相加
+```
+
+当有可选参数时，即将序列之和再加上可选参数得到的总和
+
+```python
+f = [1.1, 2.2, 3.3, 4.4, 5.5, 6.6]
+print(sum(f))  # 打印结果为：23.1
+print(sum(f, 10))  # 打印结果为：33.1    23.1 + 10 = 33.1
+```
+
+### sorted( )
+
+- 给序列排序，和之前在元组和列表中学的作用一样，用法不一样
+- sorted可以对序列进行排序（列表、元组、字符串），返回的是一个列表，之前我们学过字符串和元组本身是不能排序的，但sorted会先把字符串和元组中元素放到另一个存储空间中变成列表，再对该列表进行排序，所以返回值是一个列表，且不会改变原来序列
+- sort( )，只能对列表进行排序
+
+```python
+tuple1 = (1, -2, 23, 44, 5, 37, 7, 8, 0, 10, -95)
+str1 = 'abcdefghijklmnopqrst'
+print(sorted(tuple1))
+print(sorted(str1))
+# 这里返回的是一个序列[-95, -2, 0, 1, 5, 7, 8, 10, 23, 37, 44]
+print(tuple1)  # sorted()对序列进行排序，序列本身没有改变
+print(str1)  # sorted()对序列进行排序，序列本身没有改变
+list1 = [1, -2, 23, 44, 5, 37, 7, 8, 0, 10, -95]
+list1.sort()  # 而sort()方法，只能对列表进行排序,因为元组和字符串定义好了不能改变
+# tuple1.sort()  # 报错
+# str1.sort()  # 报错
+print(tuple1)
+print(str1)
+print(list1)  # 打印结果：[-95, -2, 0, 1, 5, 7, 8, 10, 23, 37, 44]，列表本身发生改变
+```
+
+### reversed( )
+
+和sorted用法类似
+
+- 给序列顺序倒过来，和之前在元组和列表中学的作用一样，用法不一样
+- reversed可以对序列进行排序（列表、元组、字符串），返回的是一个迭代器对象，之前我们学过字符串和元组本身是不能改变顺序的，但reversed会先把字符串和元组中元素放到另一个存储空间中变成列表，再对该列表进行逆序，并返回一个迭代器对象，不会改变原来序列，可以用list( )方法将迭代器转换成列表
+- reverse( )，只能对列表进行排序
+
+```python
+tuple1 = (1, -2, 23, 44, 5, 37, 7, 8, 0, 10, -95)
+str1 = 'abcdefghijklmnopqrst'
+print(reversed(tuple1))  # 这里返回的是不是一个列表，而是一个迭代器对象<reversed object at 0x000001A5EDEAFAC0>，但可以转换成列表
+print(list(reversed(tuple1)))  # 将迭代器转换成列表，用list()方法,[-95, 10, 0, 8, 7, 37, 5, 44, 23, -2, 1]
+print(reversed(str1))  # 这里返回的是不是一个列表，而是一个迭代器对象<reversed object at 0x000001A5EDEAFAC0>，但可以转换成列表
+print(list(reversed(str1)))  # 将迭代器转换成列表，用list()方法,['t', 's', 'r', 'q', 'p', 'o', 'n', 'm', 'l', 'k', 'j', 'i', 'h', 'g', 'f', 'e', 'd', 'c', 'b', 'a']
+print(tuple1)  # sorted()对序列进行排序，序列本身没有改变，打印结果仍然是原来的(1, -2, 23, 44, 5, 37, 7, 8, 0, 10, -95)
+print(str1)  # sorted()对序列进行排序，序列本身没有改变，打印结果仍然是原来的abcdefghijklmnopqrst
+```
+
+### enumerate( )
+
+进行枚举，参数为一个序列，并对齐生成一个元素为(index, data)形式的元组的列表，index为元素索引位置，从0开始，data为元素数据。
+
+用法和reversed( )相同，返回值是迭代器对象
+
+```python
+tuple1 = (1, -2, 23, 44, 5, 37, 7, 8, 0, 10, -95)
+print(enumerate(tuple1))  # 返回的是迭代器对象，<enumerate object at 0x0000023CC4963330>，可以用list改为列表
+print(list(enumerate(tuple1)))  # [(0, 1), (1, -2), (2, 23), (3, 44), (4, 5), (5, 37), (6, 7), (7, 8), (8, 0), (9, 10), (10, -95)]
+# 同理其他序列
+str1 = 'abcde阿斯蒂芬'
+print(list(enumerate(str1)))  # [(0, 'a'), (1, 'b'), (2, 'c'), (3, 'd'), (4, 'e'), (5, '阿'), (6, '斯'), (7, '蒂'), (8, '芬')]
+list1 = [1, -2, 23, 44, 5, 37, 7, 8, 0, 10, -95]
+print(list(enumerate(list1)))  # [(0, 1), (1, -2), (2, 23), (3, 44), (4, 5), (5, 37), (6, 7), (7, 8), (8, 0), (9, 10), (10, -95)]
+```
+
+### zip( )
+
+参数为序列(列表、字符串、元组)，且可以有多个参数，然后将每个序列对应位置的元素组成一个元组，所有位置的元组形成一个列表，该列表元素个数取决于参数序列中最少元素个数的序列，返回值为迭代器对象，可以用list( )改为序列
+
+```python
+a = [1, -2, 23, 44]
+b = [1, 2, 3, 4, 5, 6, 7, 8]
+d = [5, 6, 7, 8]
+print(zip(a, b, d))  # 返回的是迭代器对象，<zip object at 0x000002282C64F900>，可以用list改为列表
+print(list(zip(a, b, d)))  # 打印结果：[(1, 1, 5), (-2, 2, 6), (23, 3, 7), (44, 4, 8)]
+```
 
 ## 模块
 
@@ -1430,7 +1623,7 @@ for k in b: # 或者不用b，直接for k in range(5):也行
 randint()，返回一个随机整数。
 
 | randint(a, b) | 返回随机整数 N 满足 a <= N <= b。 |
-| ------------------------------------------------------------ | --------------------------------- |
+| ------------- | --------------------------------- |
 
 使用方法：
 
@@ -1447,7 +1640,7 @@ print(secret)
 
 1. 在配置python解释器时，添加conda环境，但无法识别Anaconda路径下的python.exe或conda.exe  
 
-    <img src="pythonStudy.assets/image-20240424112243430.png" alt="image-20240424112243430" style="zoom:80%;" />
+   <img src="pythonStudy.assets/image-20240424112243430.png" alt="image-20240424112243430" style="zoom:80%;" />
 
    故可以到scripts里面找到conda.exe
 
