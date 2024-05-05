@@ -94,7 +94,8 @@ dir(__builtins__) //"__"是两个下划线 _ _
 小写的就是BIF，可以用查看其用法
 
 ```python
-help( )     //( )里填如相应的BIF名字
+help( )     //( )里填如相应的BIF函数名字
+函数.__doc__
 ```
 
 <img src="pythonStudy.assets/image-20240423094255704.png" alt="image-20240423094255704" style="zoom:80%;" />
@@ -102,8 +103,6 @@ help( )     //( )里填如相应的BIF名字
 如果看不懂就可以直接百度看，也可以查看。
 
 ## 变量
-
-### 变量
 
 - 变量名就像我们现实社会的名字，把一个值赋值给一个名字时，Ta会存储在内存中，称之为变量（variable），在大多数语言中，都把这种行为称为“给变量赋值”或“把值存储在变量中”。
 
@@ -154,9 +153,9 @@ help( )     //( )里填如相应的BIF名字
   6. 变量的命名理论可以取任何合法的名字，但作为一个优秀的程序员，请将尽量给变量取一个专业一点儿的名字
 
      ```python
-     t =‘小甲鱼’       //×
-     xxoo =‘小甲鱼’    //×
-     teacher =‘小甲鱼’ //√
+     t ='小甲鱼'        # ×
+     xxoo = '小甲鱼'    # ×
+     teacher = '小甲鱼' # √
      ```
 
 ## 字符串
@@ -276,6 +275,10 @@ str = '我爱鱼C，\n正如我爱小甲鱼，\n他那呱唧呱唧\n呱唧呱唧
 
    python整型一般没有内存空间控制，任意大小，故可以进行任意大数运算。
 
+2. 字符串
+
+   python没有字符类型，因为字符类型就可以看出只有一个字符的字符串，字符串用 '  ' 或 "  " 来包裹住
+
 2. 浮点型
 
    就是小数，也没有内存空间控制
@@ -292,7 +295,7 @@ str = '我爱鱼C，\n正如我爱小甲鱼，\n他那呱唧呱唧\n呱唧呱唧
 
    <img src="pythonStudy.assets/image-20240425095553733.png" alt="image-20240425095553733" style="zoom:80%;" />
 
-4. e记法（本质上还是浮点类型）
+5. e记法（本质上还是浮点类型）
 
    即科学计数法2.5×10^27
 
@@ -305,7 +308,7 @@ str = '我爱鱼C，\n正如我爱小甲鱼，\n他那呱唧呱唧\n呱唧呱唧
    **查看数据类型**
 
    1. 使用type函数
-
+   
       ```python
       print(type(10))
       print(type(10.99))
@@ -313,9 +316,9 @@ str = '我爱鱼C，\n正如我爱小甲鱼，\n他那呱唧呱唧\n呱唧呱唧
       print(type(5e15))
       print(type("哈哈哈哈哈"))
       ```
-
+   
       打印出来的值
-
+   
       ```python
       <class 'int'>
       <class 'float'>
@@ -346,9 +349,7 @@ str = '我爱鱼C，\n正如我爱小甲鱼，\n他那呱唧呱唧\n呱唧呱唧
    True
    ```
 
-   
-
-   ## 数据类型转换
+   ### 数据类型转换
 
    <img src="pythonStudy.assets/image-20240425095717120.png" alt="image-20240425095717120" style="zoom:67%;" />
 
@@ -358,6 +359,26 @@ str = '我爱鱼C，\n正如我爱小甲鱼，\n他那呱唧呱唧\n呱唧呱唧
    a = '哈哈哈'
    b = int(a)//这里会报错，因为'哈哈哈'这个字符串不是数字类型的字符串
    ```
+
+## None对象
+
+None是python中的一个特殊的常量，表示一个空的对象，空值是python中的一个特殊值。数据为空并不代表是空对象，例如[],''等都不是None。None和任何对象比较返回值都是False，除了自己。
+
+```python
+L=[]
+print(L is None) # 返回False
+L=''
+print(L is None)  # 返回False
+```
+
+None，有自己的类型
+
+```python
+print(type(None))
+# 打印值：<class 'NoneType'>
+```
+
+
 
 ## 运算符
 
@@ -659,7 +680,7 @@ small = x if x < y else y
 assert这个关键字我们称之为“断言”，当这个关键字后边的条件为假的时候，程序自动崩溃并抛出AssertionError的异常。
 举个例子：assert 3 > 4
 
-![image-20240427202153042](pythonStudy.assets/image-20240427202153042.png)一般来说我们可以用Ta再程序中置入检查点，当需要确保程序中的某个条件一定为真才能让程序正常工作的话，assert关键字就非常有用了
+![image-20240427202153042](pythonStudy.assets/image-20240427202153042.png)一般来说我们可以用Ta在程序中置入检查点，当需要确保程序中的某个条件一定为真才能让程序正常工作的话，assert关键字就非常有用了
 
 ## 循环(也叫迭代，重复同样的过程代码)
 
@@ -891,7 +912,7 @@ print(member)
 利用索引值，每次我们可以从列表获取一个元素，但是如果一次性需要获取多个元素，可以利用列表分片，实现这个要求。
 
 ```python
-# 列表分片，取出其中一段连续的子列表，用法  列表名[startIndex:endIndex+1]
+# 列表分片，取出其中一段连续的子列表，用法：列表名[startIndex:endIndex+1]，这里endIndex+1也是元素在第几个位置，因为Index列表元素索引是从0开始的，所以他的位置时Index+1
 member = ['小甲鱼', '小布丁', '哈哈', '嘻嘻', '黑夜', '迷途', '啊呜', '略略', '林小溪']
 print(member)
 print(member[1:3])  # 输出member[1]和member[2]，因为3 - 1 = 2只输出两个元素，这也是为什么上面endIndex+1
@@ -1307,7 +1328,87 @@ def MyThirdFunction(a, b):  # 两个参数
     print(result)
 ```
 
+#### 实参和形参
+
+函数定义时( )括号里的叫形式参数，而调用时和函数体使用时的参数叫实际参数
+
+![image-20240505094707786](pythonStudy.assets/image-20240505094707786.png)
+
+#### 关键字参数
+
+```python
+MyThirdFunction('Q.M.F.', '改变世界')  # Q.M.F.->改变世界
+MyThirdFunction('改变世界', 'Q.M.F.', )  # 改变世界->Q.M.F.
+# 上面参数位置发生转换，打印结果也会不同
+# 如果想要参数位置无论在哪，打印结果要相同，可以使用关键字进行传参
+MyThirdFunction(word='改变世界', name='Q.M.F.')  # 加上参数关键字，这样即便顺序不一样执行结果仍然相同
+# 结果：Q.M.F.->改变世界
+```
+
+#### 默认参数
+
+及如果函数调用时没有传该参数，该参数仍有自己的默认值
+
+```python
+MyForthFunction()  # 如果定义时没有给出参数默认值，找个就会报错
+# 不传任何参数使用默认参数，打印结果：嘻嘻->xixi
+MyForthFunction('Q.M.F.')  # 传一个，打印结果：Q.M.F.->xixi
+MyForthFunction(word='改变世界')  # 传一个，打印结果：嘻嘻->改变世界，注意因为word在第二个参数，故要用关键字指明是哪个参数
+```
+
+#### 收集参数(可变参数)
+
+因为有时候定义函数时不知道要定义几个参数，故可以用 *param 代替，即定义任意个参数，这就叫可变参数
+
+```python
+def MyFifthFunction(*param):  # *param代表参数可变
+    print('参数长度为:' + str(len(param)))  # 用可变参数，会将传来的参数放在一个元组中
+    print(param)  # 参数放在元组中，所以这里打印的是一个元组
+    print(param[0:len(param)])  # 打印元组中第一个元素
+
+
+MyFifthFunction(1, 2, 3, 4, 5, 6, 7)
+# 运行结果为
+# 参数长度为:7             参数元组中元素个数
+# (1, 2, 3, 4, 5, 6, 7)  参数元组
+# 1                       参数中第一个元素
+```
+
+如果想要定义一个可变参数和任意个固定参数的函数
+
+```python
+def MySixthFunction(*alter, word):#alter为可变参数，word为固定参数
+    print('可变参数为:', end='')
+    print(alter)
+    print('固定参数为:', end='')
+    print(word)
+
+
+# MySixthFunction('haha', 'xixi', 1, 2, 3)  # 这样传参会报错，因为这里所有参数都会传给可变参数alter，就没有参数穿个word参数了，所以要添加关键参数
+MySixthFunction('haha', 'xixi', 1, 2, 3, word=4)
+# 运行结果为
+# 可变参数为:('haha', 'xixi', 1, 2, 3)
+# 固定参数为:4
+
+```
+
+当然也可以对调参数位置，这样MySixthFunction('haha', 'xixi', 1, 2, 3)就不会报错
+
+```python
+def MySixthFunction(word, *alter):  # alter为可变参数，word为固定参数
+    print('可变参数为:', end='')
+    print(alter)
+    print('固定参数为:', end='')
+    print(word)
+
+
+MySixthFunction('haha', 'xixi', 1, 2, 3)  # 这样传参就不会报错了，因为先传给word，其余的都给alter
+
+```
+
 ### 函数的返回值
+
+用return返回，python函数中如果没有返回值，则默认返回的是None
 
 ```python
 def add(num1, num2):
@@ -1318,9 +1419,268 @@ result = add(3, 4)
 print(result)
 ```
 
+```python
+def add(num1, num2): # 没有返回值
+
+result = add(3, 4)
+print(result)#打印结果为None
+```
+
+python中函数也可以返回多个值，但会以元组方式返回
+
+```python
+def fun():
+    return 1, 2, 3, 'haha', 'xixi'  # 要记得python中元组是靠 , 逗号隔开是可以没有括号的
+    # return (1, 2, 3, 'haha', 'xixi')  # 当然写成这样也是可以的
+
+
+a = fun()
+print(a)  # 结果为：(1, 2, 3, 'haha', 'xixi')
+```
+
+### 函数文档
+
+函数文档用于写清文档具体用途，当然注释也行，但时必须要在源代码里看，而函数文档可以直接调用，直接看就行。
+
+```python
+def MyFirstFunction(name):
+    '函数定义过程中的name是叫形参，因为Ta只是一个形式，表示占据一个参数位置'  # 注意这里不是叫字符串，而是自己写的函数文档用' '来包裹
+    # 如果要多个句子可以用'''   '''三重引号，如下
+    # '''
+    # 数定义过程中的name是叫形参。
+    # 因为Ta只是一个形式，表示占据一个参数位置。
+    # '''
+    print('传递进来的' + name + '叫做实参，因为Ta是具体的参数值！')
+
+
+MyFirstFunction('哈哈')  # 函数调用
+print(MyFirstFunction.__doc__)  # 调用方式为：函数.__doc__，用.是因为__doc__是函数的一个属性，属性和方法都要用. ，注意doc两边是双下划线__ __
+# 打印的函数文档为：函数定义过程中的name是叫形参，因为Ta只是一个形式，表示占据一个参数位置
+help(MyFirstFunction)  # 函数文档也可以通过help来查看，就像BIF内置函数那里学的一样
+# 输出结果：
+# MyFirstFunction(name)
+# 函数定义过程中的name是叫形参，因为Ta只是一个形式，表示占据一个参数位置
+```
+
+更具体文档定义
+
+```python
+def MySecondFunction(name):
+    '''
+    hahahahaha
+    :param name:
+    :return:
+    '''
+
+
+print(MySecondFunction.__doc__)
+```
+
+### 变量作用域
+
+- 在函数里面的叫局部变量，函数体外的叫全局变量
+- 局部变量的作用域在函数体内，而全局变量全局都能访问
+- python中全局变量在函数中可以访问，但不能修改，因为若要修改，函数的空间内会自动创建一个同名的变量，而不会使用全局变量，这样修改的只是函数体内的同名变量，全局变量本身并不改变。
+
+```python
+def discounts(price, rate):
+    # 函数里面定义的变量是局部变量，作用域在函数里面
+    final_price = price * rate  # 最终价格，注意变量是可以带 _ 下划线的，不要以为是别的东西
+    old_price = 88  # 全局变量可以在函数内随意访问，但这里试图修改全局变量，python会在函数的空间内再创建一个同名的变量，而不会使用全局变量
+    print('函数里的修改后old_price的值是：', old_price)#所以这里old_price值在函数里虽然修改，但只是修改了函数里的这个变量，而全局变量并没有修改
+    return final_price
+
+
+# 函数外面定义的变量是全局变量，作用域是全局
+old_price = float(input('请输入原价：'))  # float是将输入数据转化为浮点型
+rate = float(input('请输入折扣率：'))
+new_price = discounts(old_price, rate)
+# print('打折后价格是：', final_price)#这里会报错，因为函数里的局部变量旨在函数里面有用，而在外面是无法访问的
+print('修改后old_price的值是：', old_price)
+print('打折后价格是：', new_price)
+```
+
+如果实在想在函数体内修改全局变量可以用global关键字
+
+```python
+def MyFirstFunction():
+    count = 10
+
+
+def MySecondFunction():
+    global count  # 添加global关键字
+    count = 100
+
+
+count = 5
+MyFirstFunction()
+print(count)  # 执行完MyFirstFunction仍然为5
+MySecondFunction()
+print(count)  # MySecondFunction里有global关键字，所以count会被修改
+```
+
+### 内部函数
+
+内部函数：就是在函数里再定义一个函数
+
+```python
+def Fun1():
+    print('Fun1正在被调用...')
+    def Fun2(): # Fun2是Fun1的内部函数
+        print('Fun2正在被调用...')
+
+Fun1()  # 这里打印结果为：Fun1正在被调用... ，可以看到Fun1里的Fun2未被运行是因为Fun1中没有调用Fun2
+Fun2()  # 这里调用Fun2会被报错，因为内部函数只有包裹住他的函数体内可以使用，在外面不能调用
+
+def Fun3():
+    print('Fun3正在被调用...')
+
+    def Fun4():
+        print('Fun4正在被调用...')
+
+    Fun4()  # 注意这里是在Fun3中调用Fun4，python的缩进是用于充当C中{ }大括号，划分函数体用的，这段是属于Fun3的，不是Fun4的
+
+    
+Fun3()
+# 运行结果为
+# Fun3正在被调用...
+# Fun4正在被调用...
+```
+
+注意：内部函数只能在其外部函数之内调用，其他任何地方都不能调用
+
+### 闭包
+
+闭包概念：在一个内部函数中，对外部作用域的变量进行引用，(并且一般外部函数的返回值为内部函数)，那么内部函数就被认为是闭包。
+
+内部函数是闭包的条件
+
+- 对外部作用域的变量进行引用
+- 外部函数的返回值为内部函数
+
+```python
+def FunX(x):
+    def FunY(y):
+        return x * y  # 这里内部函数对外部函数的变量x进行调用了，注意函数的参数也是作为函数内部的变量的
+    return FunY  # 这里外部函数的返回值为内部函数，注意这里内部函数不用带()，因为如果带括号相当于是执行FunY了，就会报错
+# 所以这里FunY满足了闭包的两个条件
+
+a = FunX(8)
+print(a)  # 打印结果：<function FunX.<locals>.FunY at 0x00000168D5E58680>
+print(type(a))  # 打印结果发现a的类型为<class 'function'>，函数类型，所以a本身就是一个函数，
+                # 在python中这个函数其实就是内部函数
+print(a(5))  # 这里我们给a传个参数，打印结果为40 ，即之前的8，乘以后面再传过去的5
+
+# 也可以直接这样
+b = FunX(8)(5)  # 第一个括号参数传给外部函数，后面括号中参数传给的是内部函数
+print(b)  # 打印结果为40
+```
+
+注意：
+
+内部函数可以引用或叫访问外部函数的变量，单一定不能修改
+
+```python
+def Fun1():
+    x = 8
+    
+    def Fun2():
+        x *= x # 一定不能修改外部函数的变量，所以这里会报错，因为修改外部变量不了，这里内部函数就会新建一个变量x，而这个x没有赋值，这里就不能进行计算，所以会报错
+        return x
+
+    return Fun2
+
+Fun1()
+```
+
+解决方案，在内部函数想要改变外部函数时，可以在前面用nonlocal关键字先声明内部函数的x变量不是当前函数的局部变量，这样就会使用外部函数的x变量，这时就可以修改
+
+```python
+def Fun1():
+    x = 8
+
+    def Fun2():
+        nonlocal x
+        x *= x
+        return x
+
+    return Fun2
+
+
+print(Fun1()()) # 这里Fun1()返回的是一个函数类型，代表的是Fun2()，再加一个()就是运行Fun2(),和前面一样，只不过一个用的是参数变量，这里用的是函数定义的变量
+# 打印值为64
+```
+
+或者使用容器类型，即序列，包括列表、元组、字符串，这些因为不是像变量存储在函数栈中，而是在堆中，所以不想局部变量那样不能在其他函数中修改，所以还可以改为
+
+```python
+def Fun1():
+    x = [8] # 定义成列表
+
+    def Fun2():
+        x[0] *= x[0]
+        return x[0]
+
+    return Fun2
+
+
+print(Fun1()()) # 这里Fun1()返回的是一个函数类型，代表的是Fun2()，再加一个()就是运行Fun2(),和前面一样，只不过一个用的是参数变量，这里用的是函数定义的变量
+# 打印值为64
+```
+
+外部函数返回外部函数是不能带( )括号的，否则就不是闭包，返回的
+
+```python
+def Fun1():
+    x = 8
+
+    def Fun2():
+        x *= x  # x = x * x，这里内部函数本来想对外部函数的x进行调用，但这里要修改x，前面学过是不能修改的，只能访问外部变量，要修改就会在内部函数中创建新的变量x，而这个新x没有赋值，不能进行运算的，所以报错
+        return x
+
+    return Fun2()  # 这里返回内部函数不能带()，带()的话相当于调用Fun2，就不再是闭包，而执行Fun2，Fun2里的x相当于是自己有新建了一个变量x，没有调用外部函数的参数
+```
+
+![image-20240505173516247](pythonStudy.assets/image-20240505173516247.png)
+
+为了解决这个问题，可以在内部函数使用外部函数的变量，这里因为是局部变量是用不了global的，所以同样使用python关键字——nonlocal，即指明该变量不是当前函数的局部变量
+
+```python
+def Fun1():
+    x = 8
+    
+    def Fun2():
+        nonlocal x # 声明这里不是这个函数的局部变量，所以会用外部函数的x
+        x *= x  # x = x * x，这里内部函数对外部函数的变量x进行调用
+        return x
+
+    return Fun2()
+
+print(Fun1())# 这里Fun1()只有一个括号，因为return是去执行了Fun2()这个函数，内部函数执行后返回的是一个值，而不是想闭包那样返回的是一个函数
+# 运行结果为64
+```
+
+或者改为容器类型
+
+```python
+def Fun1():
+    x = [8]
+    
+    def Fun2():
+        x[0] *= x[0]  # x = x * x，这里内部函数对外部函数的变量x进行调用
+        return x[0]
+
+    return Fun2()
+
+print(Fun1())# 这里Fun1()只有一个括号，因为return是去执行了Fun2()这个函数，内部函数执行后返回的是一个值，而不是想闭包那样返回的是一个函数
+# 运行结果为64
+```
+
+
+
 ## 常用BIF——Built-in functions(内置函数)
 
-### print( )
+### print(  )
 
 ```python
 print("哈哈哈哈哈")//输出字符串
@@ -1426,7 +1786,10 @@ test
 ['China', 'Russia']
  ```
 
-  注意：将字典转换为列表时，会将字典的值舍去，而仅仅将字典的键转换为列表。如果想将字典的值全部转换为列表，可以考虑使用字典方法dict.values()
+  注意：
+
+- 将这些变为列表后就可以进行排序，逆置等操作了
+- 将字典转换为列表时，会将字典的值舍去，而仅仅将字典的键转换为列表。如果想将字典的值全部转换为列表，可以考虑使用字典方法dict.values()
 
 5. 将集合转换为列表
 
