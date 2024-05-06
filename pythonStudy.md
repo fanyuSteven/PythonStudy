@@ -1676,6 +1676,8 @@ print(Fun1())# 这里Fun1()只有一个括号，因为return是去执行了Fun2(
 # 运行结果为64
 ```
 
+## lambda表达式
+
 
 
 ## 常用BIF——Built-in functions(内置函数)
